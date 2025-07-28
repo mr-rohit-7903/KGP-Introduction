@@ -24,10 +24,9 @@ jobs:
       - name: 🏗️ Build React app
         run: CI=false npm run build
 
-      - name: 🚀 Deploy using ZipDeploy (Azure)
+      - name: 🚀 Deploy to Azure Web App
         uses: azure/webapps-deploy@v2.2.10
         with:
-          app-name: inductionpagekgp  # Make sure this matches your app name in Azure exactly
+          app-name: inductionpagekgp
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: ./build
-          deployment-method: zip
