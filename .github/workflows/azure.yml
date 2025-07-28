@@ -10,23 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: 📦 Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: 🛠️ Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
 
-      - name: Install dependencies
+      - name: 📥 Install dependencies
         run: npm install
 
-      - name: Build React app
+      - name: 🏗️ Build React app
         run: CI=false npm run build
 
-      - name: Deploy to Azure Web App
+      - name: 🚀 Deploy to Azure Web App
         uses: azure/webapps-deploy@v2.2.10
         with:
-          app-name: inductionpagekgp  # This must match Azure EXACTLY
+          app-name: inductionpagekgp
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: build
