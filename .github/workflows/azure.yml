@@ -3,7 +3,7 @@ name: Deploy CRA to Azure Web App
 on:
   push:
     branches:
-      - main
+      - main  # Deploy only when code is pushed to main
 
 jobs:
   build-and-deploy:
@@ -25,8 +25,8 @@ jobs:
         run: CI=false npm run build
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2.2.10  # ✅ stable version
+        uses: azure/webapps-deploy@v2.2.10
         with:
-          app-name: inductionpagekgp  # Your Azure Web App name
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          app-name: inductionpagekgp  # ⚠️ Must exactly match your App Service name in Azure
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  # ⚠️ Must match secret name
           package: build
